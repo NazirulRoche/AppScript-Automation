@@ -66,6 +66,7 @@ class ID {
     }
 
     defineCellsForServiceAndRegion(numberOfRows, firstIndexOfServiceAndRegion) {
+      Logger.log("region: " + region);
       Logger.log("total number of rows for " + service + " and " + region + ": " + numberOfRows);
       Logger.log("the first row index for " + service + " and " + region + ": " + firstIndexOfServiceAndRegion);
 
@@ -251,16 +252,14 @@ class SubclassID extends ID {
         Logger.log("Values after inserting the counter: " + selected_cells.getValues());
     }
 
-
-
 }
 
 function getMonthFromUser() {
     let message = "Please enter the month: ";
-    let regionPrompt = SpreadsheetApp.getUi().prompt(message);
-    region = regionPrompt.getResponseText();
+    let monthPrompt = SpreadsheetApp.getUi().prompt(message);
+    month = monthPrompt.getResponseText();
 
-    return region;
+    return month;
 }
 
 function returnCountryAndCaseOriginBasedOnDefinedCells(service, region, numberOfRowsAndFirstIndex) {
@@ -282,7 +281,7 @@ function returnCountryAndCaseOriginBasedOnDefinedCells(service, region, numberOf
 
 function main() {
 
-   const service = getServiceFromUser();
+    const service = getServiceFromUser();
     const region = getRegionFromUser();
     const sourceSheet = SubclassID.getSheet();
     const month = getMonthFromUser();
@@ -307,8 +306,6 @@ function onOpen() {
 
     menu.addItem("Automatic counter by month", "main");
 
-
     menu.addToUi();
 }
-
 
